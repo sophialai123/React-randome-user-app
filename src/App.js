@@ -2,16 +2,16 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 import './App.css';
 import Users from "./components/Users";
-import search from "./components/search.png";
 
 function App() {
+
   //create a useState to disply data on the screen
   const [randomUser, setRandomUser] = useState([]);
   const [searchGender, setSearchGender] = useState('');
 
   //Make API request
   useEffect(() => {
-    Axios.get("https://randomuser.me/api/?results=100")
+    Axios.get("https://randomuser.me/api/?results=5")
       .then((respone) => {
         setRandomUser(respone.data.results);
         console.log(respone.data.results)
@@ -21,14 +21,20 @@ function App() {
 
   //Create filleredGender
   const filleredGender = randomUser.filter((user) => {
-
-    return user.gender.toLowerCase().indexOf(searchGender) > -1
+    // return user.gender.toLowerCase().indexOf(searchGender) > -1
+    if (searchGender === "male") {
+      return user.gender.toLowerCase() === "male"
+    } else if (searchGender === "female") {
+      return user.gender.toLowerCase() === "female"
+    } else {
+      return user.gender
+    }
 
   });
 
-
   return (
     <div className="App">
+      <h1>Random User App</h1>
       <div >
         <input type="text" placeholder="Search gender..." value={searchGender}
           onChange={(event) => {
@@ -46,34 +52,14 @@ function App() {
               email={user.email}
               picture={user.picture.large} s
               gender={user.gender}
-
             />
-
           );
-
-
         })}
-
       </div>
-
     </div>
-
-
 
 
   );
 }
 
-
-
 export default App;
-
-
-// return (
-
-
-
-//   user.gender.toLowerCase().includes(searchGender.toLowerCase())
-
-
-// );
