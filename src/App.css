@@ -7,12 +7,40 @@ body {
   font-family: sans-serif;
   margin: 0 auto;
   padding: 25px;
-  max-width: 400px;
-  min-width: 400px;
   background-color: #dfe6e9;
   text-align: center;
   
 }
+
+.users{
+  display: grid;
+  /* grid-auto-flow: column; */
+  grid-template-columns: 33% 33% 33%;
+}
+
+
+@media only screen and (max-width: 1200px)  {
+
+  .users{
+    grid-template-columns: 50% 50%;
+  }
+  
+  body{
+
+    max-width: 1000px;
+
+
+  }
+}
+
+@media only screen and (max-width: 600px)  {
+
+  .users{
+    grid-template-columns: 100%;
+  }
+  
+}
+
 
 input{
   width:350px;
@@ -47,8 +75,9 @@ input{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 100%;
-  height: 100%;
+  height: 280px; 
+  max-width: 400px;
+  min-width: 400px;
   
 }
 
@@ -85,7 +114,7 @@ input{
 }
 
 .bottom {
-  margin-top: 120px;
+  margin-top: 90px;
 }
 
 .info {
